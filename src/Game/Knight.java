@@ -19,7 +19,7 @@ public class Knight extends GameObject {
 		super(x, y, width, height);
 		speed = 10;
 		if (needImage) {
-		    loadImage ("rocket.png");
+		    loadImage ("walk animation/right13.png");
 		}
 
 		// TODO Auto-generated constructor stub
@@ -53,10 +53,10 @@ public class Knight extends GameObject {
 		}
 		if (y <= 0) {
 			y = 0;
-		} else if (y >= savePrincess.HEIGHT-90) {
-			y = savePrincess.HEIGHT-90;
-		} if (x >= savePrincess.WIDTH-65) {
-			x = savePrincess.WIDTH-65;
+		} else if (y >= SavePrincess.HEIGHT-150) {
+			y = SavePrincess.HEIGHT-150;
+		} if (x >= SavePrincess.WIDTH-15) {
+			x = SavePrincess.WIDTH-15;
 		} else if (x <= 0) {
 			x = 0;
 		}
@@ -73,8 +73,8 @@ public class Knight extends GameObject {
 	        needImage = false;
 	    }
 	}
-	public Projectile getProjectile() {
-        return new Projectile(x+width/2, y, 10, 10);
+	public Sword getSword() {
+        return new Sword(x+width/2, y, 25, 50);
 } 
 
 }

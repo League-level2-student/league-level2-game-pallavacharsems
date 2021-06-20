@@ -1,20 +1,20 @@
 package Game;
 import javax.swing.JFrame;
 
-public class savePrincess {
+public class SavePrincess {
 	GamePanel gpanel;
 	JFrame frame;
-	public static final int WIDTH = 500;
-	public static final int HEIGHT = 700;
+	public static final int WIDTH = 1000;
+	public static final int HEIGHT = 600;
 	public static void main(String[] args) {
-		new savePrincess().run();
-		savePrincess sp = new savePrincess();
+		new SavePrincess().run();
+		SavePrincess sp = new SavePrincess();
 		sp.setup();
 		
 
 		
 	}
-	savePrincess(){
+	SavePrincess(){
 		frame = new JFrame();
 		gpanel = new GamePanel();
 		frame.addKeyListener(gpanel);

@@ -25,15 +25,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	    Font tf;
 	    Timer frameDraw;
 	    Timer alienspawn;
-	    Rocketship rs = new Rocketship(225, 650, 50, 50);
-	    ObjectManager om = new ObjectManager(rs);
+	    Knight k = new Knight(105, 250, 150, 125);
+	    Sword sword = new Sword(245, 250, 25, 50);
+	    ObjectManager om = new ObjectManager(k);
 	    GamePanel(){
 	    	titleFont = new Font("Arial", Font.PLAIN, 48);	
 	    	tf = new Font("Arial", Font.PLAIN, 24);	
 	    	frameDraw = new Timer(1000/60,this);
 	        frameDraw.start();
 	    	if (needImage) {
-			    loadImage ("space.png");
+			    loadImage ("castle.png");
 			}
 	    }
 	@Override
@@ -49,8 +50,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	void updateMenuState() {  }
     void updateGameState() {
     	om.update(); 
-    	rs.update();
-    	if (rs.isActive ==  false) {
+    	k.update();
+    	if (k.isActive ==  false) {
     		currentState = END;
     	}
     	om.score = om.getScore();
@@ -58,35 +59,35 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     }
     void updateEndState()  {  }
     void drawMenuState(Graphics g) {  
-    	g.setColor(Color.BLUE);
-        g.fillRect(0, 0, savePrincess.WIDTH, savePrincess.HEIGHT); 
+    	g.setColor(Color.MAGENTA);
+        g.fillRect(0, 0, SavePrincess.WIDTH, SavePrincess.HEIGHT); 
         g.setFont(titleFont);
-        g.setColor(Color.YELLOW);
-        g.drawString("LEAGUE INVADERS", 15 ,50 );
+        g.setColor(Color.BLUE);
+        g.drawString("Save The Princess", 300 ,50 );
         g.setFont(tf);
-        g.setColor(Color.YELLOW);
-        g.drawString("Press ENTER to start", 125 ,300 );
+        g.setColor(Color.BLUE);
+        g.drawString("Press ENTER to start", 375 ,300 );
         g.setFont(tf);
-        g.setColor(Color.YELLOW);
-        g.drawString("Press SPACE for instructions", 90 ,500 );
+        g.setColor(Color.BLUE);
+        g.drawString("Press SPACE for instructions", 350 ,500 );
         
     }
     void drawGameState(Graphics g) {  
     	if (gotImage) {
-			g.drawImage(image,0, 0, savePrincess.WIDTH, savePrincess.HEIGHT, null);
-			g.setColor(Color.BLUE);
+			g.drawImage(image,0, 0, SavePrincess.WIDTH, SavePrincess.HEIGHT, null);
+			g.setColor(Color.RED);
 			g.setFont(tf);
-			g.drawString("Score: " + om.score, 15 ,50 );
+			g.drawString("Score: " + om.score, 15 ,25 );
 			
 		} else {
-			g.setColor(Color.BLACK);
-			g.fillRect(0, 0, savePrincess.WIDTH, savePrincess.HEIGHT);
+			g.setColor(Color.WHITE);
+			g.fillRect(0, 0, SavePrincess.WIDTH, SavePrincess.HEIGHT);
 		}
     	om.draw(g);	 
     }
     void drawEndState(Graphics g)  {  
     	g.setColor(Color.RED);
-        g.fillRect(0, 0, savePrincess.WIDTH, savePrincess.HEIGHT);
+        g.fillRect(0, 0, SavePrincess.WIDTH, SavePrincess.HEIGHT);
         g.setFont(titleFont);
         g.setColor(Color.YELLOW);
         g.drawString("Game Over", 125 ,50 );
@@ -118,8 +119,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		    if (currentState == END) {
 		        currentState = MENU;
 		        alienspawn.stop();
-		    	rs = new Rocketship(225, 650, 50, 50);
-		    	om = new ObjectManager(rs);
+		    	k = new Knight(105, 250, 150, 125);
+		    	sword = new Sword(225, 250, 25, 50);
+		    	om = new ObjectManager(k);
 		    } else {
 		        currentState++;
 		      
@@ -131,27 +133,27 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		  
 		}   
 		 if (e.getKeyCode()==KeyEvent.VK_SPACE) {
-		    	om.addProjectile(rs.getProjectile());
+		    	om.addSword(k.getSword());
 		    	
 			}
 		if (e.getKeyCode()==KeyEvent.VK_UP) {
 			
-		    rs.up = true;
+		    k.up = true;
 		    
 		}
 		if (e.getKeyCode()==KeyEvent.VK_DOWN) {
 		    
-		    rs.down = true;
+		    k.down = true;
 		    
 		}
 		if (e.getKeyCode()==KeyEvent.VK_LEFT) {
 		   
-		    rs.left = true;
+		    k.left = true;
 		   
 		}
 		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
 		    
-		    rs.right = true;
+		    k.right = true;
 		    
 		}
 	}
@@ -159,16 +161,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		if(arg0.getKeyCode()==KeyEvent.VK_UP) {
-			rs.up = false;
+			k.up = false;
 		}
 		if(arg0.getKeyCode()==KeyEvent.VK_DOWN) {
-			rs.down = false;
+			k.down = false;
 		}
 		if(arg0.getKeyCode()==KeyEvent.VK_LEFT) {
-			rs.left = false;
+			k.left = false;
 		}
 		if(arg0.getKeyCode()==KeyEvent.VK_RIGHT) {
-			rs.right = false;
+			k.right = false;
 		}
 	}
 	@Override
