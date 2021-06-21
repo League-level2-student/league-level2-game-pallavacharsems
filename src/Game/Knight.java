@@ -14,12 +14,14 @@ public class Knight extends GameObject {
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
+	
 
 	Knight(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		speed = 10;
 		if (needImage) {
 		    loadImage ("walk animation/right13.png");
+		    
 		}
 
 		// TODO Auto-generated constructor stub
@@ -73,8 +75,6 @@ public class Knight extends GameObject {
 	        needImage = false;
 	    }
 	}
-	public Sword getSword() {
-        return new Sword(x+width/2, y, 25, 50);
+	
 } 
 
-}

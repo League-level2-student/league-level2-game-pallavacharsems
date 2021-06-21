@@ -7,20 +7,28 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 public class Sword extends GameObject {
+	boolean up;
+	boolean down;
+	boolean left;
+	boolean right;
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
+	int knightX;
+	int knightY;
 
 	Sword(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		speed = 15;
+		speed = 10;
 		if (needImage) {
 			loadImage("Sword animation/sword.png");
 		}
 	}
 
 	void update() {
-		y -= speed;
+	x = knightX+85;
+	y = knightY+45;
+
 		super.update();
 	}
 
