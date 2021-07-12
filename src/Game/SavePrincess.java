@@ -7,9 +7,9 @@ public class SavePrincess {
 	public static final int WIDTH = 1000;
 	public static final int HEIGHT = 600;
 	public static void main(String[] args) {
-		new SavePrincess().run();
 		SavePrincess sp = new SavePrincess();
 		sp.setup();
+		sp.run();
 		
 
 		

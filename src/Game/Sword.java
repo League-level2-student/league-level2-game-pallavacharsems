@@ -2,11 +2,15 @@ package Game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
-public class Sword extends GameObject {
+public class Sword extends GameObject implements KeyListener {
+	boolean state;
+	boolean pause;
 	boolean up;
 	boolean down;
 	boolean left;
@@ -26,12 +30,17 @@ public class Sword extends GameObject {
 	}
 
 	void update() {
+	if (state == false) {
 	x = knightX+85;
 	y = knightY+45;
-
+	
+	}
+	
+	
 		super.update();
 	}
 
+		
 	void draw(Graphics g) {
 		if (gotImage) {
 			g.drawImage(image, x, y, width, height, null);
@@ -51,5 +60,23 @@ public class Sword extends GameObject {
 			}
 			needImage = false;
 		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

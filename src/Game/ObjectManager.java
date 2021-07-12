@@ -9,13 +9,17 @@ import java.util.Random;
 public class ObjectManager implements ActionListener {
 	Knight k;
 	Sword s;
-	ArrayList<Dragon> dragons = new ArrayList<Dragon>();
+	Dragon d;
+	GamePanel gp;
 	Random random = new Random();
 	int score = 0;
+	GamePanel gpanel;
 
-	ObjectManager(Knight k, Sword s) {
+	ObjectManager(Knight k, Sword s, Dragon d, GamePanel gp) {
 		this.k = k;
 		this.s = s;
+		this.d = d;
+		this.gp = gp;
 
 	}
 
@@ -24,63 +28,32 @@ public class ObjectManager implements ActionListener {
 
 	}
 
-	
-
-	void addDragon() {
-		dragons.add(new Dragon(random.nextInt(SavePrincess.HEIGHT), 0, 50, 100));
-	}
-
-	void update() {
-		for (int i = 0; i < dragons.size(); i++) {
-			Dragon a = dragons.get(i);
-			a.update();
-			if (a.x >= SavePrincess.WIDTH || a.x <= 0) {
-				a.isActive = false;
-			}
-		}
-		
-
-			}
-		
-		
-	
-
-	void purgeObjects() {
-		for (int i = 0; i < dragons.size(); i++) {
-			Dragon c = dragons.get(i);
-			if (c.isActive == false) {
-				dragons.remove(c);
-			}
-		}
-		
-			}
-		
 
 	
 
 	void draw(Graphics g) {
 		k.draw(g);
+		if(gp.currentState != gp.KEY) {
 		s.draw(g);
-		for (int i = 0; i < dragons.size(); i++) {
-			Dragon a = dragons.get(i);
-			a.draw(g);
+		}
+		if(gp.currentState == gp.GAME) {
+			d.draw(g);
 		}
 		
 			
-		}
-	
+		
+	}
 
 	void checkCollision() {
-		for (int i = 0; i < dragons.size(); i++) {
-			Dragon b = dragons.get(i);
-			if (k.collisionBox.intersects(b.collisionBox)) {
+		
+			if (k.collisionBox.intersects(d.collisionBox)) {
 				k.isActive = false;
-				b.isActive = false;
+				d.isActive = false;
 				System.out.println("t");
 			}
 			
 				}
-			}
+			
 
 		
 	
@@ -88,6 +61,6 @@ public class ObjectManager implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		addDragon();
+		
 	}
 }
