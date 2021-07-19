@@ -37,10 +37,12 @@ public class Knight extends GameObject {
 	}
 
 	void update() {
+		
 		super.update();
 		
 		if (up == true) {
 			y += -speed;
+			
 		}
 		if (down == true) {
 			y += speed;

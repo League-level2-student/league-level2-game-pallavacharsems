@@ -165,13 +165,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.fillRect(0, 0, SavePrincess.WIDTH, SavePrincess.HEIGHT);
 		g.setFont(titleFont);
 		g.setColor(Color.YELLOW);
-		g.drawString("Game Over", 125, 50);
-		g.setFont(tf);
+		g.drawString("Game Over", 375, 50);
+		g.setFont(titleFont);
 		g.setColor(Color.YELLOW);
-		g.drawString("You killed " + om.score + " enemies", 130, 300);
-		g.setFont(tf);
-		g.setColor(Color.YELLOW);
-		g.drawString("Press ENTER to restart", 125, 500);
+		g.drawString("Press ENTER to restart", 310, 250);
 	}
 
 	@Override
@@ -216,18 +213,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				String g = JOptionPane.showInputDialog("One knight, a king and a queen go out sailing. \n"
 						 +"They get into a horrible crash, and they all die. They were the only people on the boat. \n"
 						 +"When the police are taking the bodies, they take the King's body, then the Queen's and then a third person's body. Whose body is the third body?");
-
+				if(g.equalsIgnoreCase("knight")) {
+				JOptionPane.showMessageDialog(null, "Great Job. You can now move onto finding the key");
+			} else {
+				JOptionPane.showMessageDialog(null, "Sorry you were wrong! You lost!");
+				currentState = END;
 			}
 
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			s.state = true;
-			s.x+=10;
+			s.startSwing = true;
+			
 			
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 
 			k.up = true;
+			System.out.println("gr3egre");
 
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -246,7 +248,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		}
 	}
-
+	}
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub

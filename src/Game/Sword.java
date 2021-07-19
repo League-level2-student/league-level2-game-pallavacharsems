@@ -9,8 +9,11 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 public class Sword extends GameObject implements KeyListener {
+	long swordStartTime;
+	long swordSwingTime = (long) (0.5 * 1_000_000_000);
 	boolean state;
 	boolean pause;
+	boolean startSwing;
 	boolean up;
 	boolean down;
 	boolean left;
@@ -30,17 +33,26 @@ public class Sword extends GameObject implements KeyListener {
 	}
 
 	void update() {
-	if (state == false) {
-	x = knightX+85;
-	y = knightY+45;
-	
-	}
-	
-	
+		if (startSwing == true) {
+			swordStartTime = System.nanoTime();
+			startSwing = false;
+			pause = true;
+
+		}  if (pause == true) {
+			x = knightX + 105;
+			y = knightY + 45;
+			if(swordStartTime+swordSwingTime>=System.nanoTime()) {
+				pause = false;
+			}
+			
+		} else {
+			x = knightX + 85;
+			y = knightY + 45;
+		}
+
 		super.update();
 	}
 
-		
 	void draw(Graphics g) {
 		if (gotImage) {
 			g.drawImage(image, x, y, width, height, null);
@@ -65,18 +77,18 @@ public class Sword extends GameObject implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
