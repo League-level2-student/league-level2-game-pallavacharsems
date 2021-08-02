@@ -9,11 +9,18 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 public class Sword extends GameObject implements KeyListener {
-	long swordStartTime;
-	long swordSwingTime = (long) (0.5 * 1_000_000_000);
-	boolean state;
-	boolean pause;
-	boolean startSwing;
+	int targetX;
+	int targetY;
+	int speed = 10;
+	
+	int followState = 0;
+	int moveState = 1;
+	int pauseState = 2;
+	int currentState = followState;
+	boolean returningToPlayer = false;
+	
+	long pauseStartTime;
+	
 	boolean up;
 	boolean down;
 	boolean left;
@@ -32,27 +39,56 @@ public class Sword extends GameObject implements KeyListener {
 		}
 	}
 
-	void update() {
-		if (startSwing == true) {
-			swordStartTime = System.nanoTime();
-			startSwing = false;
-			pause = true;
 
-		}  if (pause == true) {
-			x = knightX + 105;
-			y = knightY + 45;
-			if(swordStartTime+swordSwingTime>=System.nanoTime()) {
-				pause = false;
-			}
-			
-		} else {
+	public void update() {
+		if(currentState == followState) {
 			x = knightX + 85;
 			y = knightY + 45;
+		}else if(currentState == moveState) {
+			if(returningToPlayer) {
+				targetX = knightX + 85;
+				targetY = knightY + 45;
+				if(x < targetX) {
+					x += speed;
+				}else if(x > targetX){
+					x -= speed;
+				}
+				if(y < targetY) {
+					y += speed;
+				}else if(y > targetY){
+					y -= speed;
+				}
+				
+				if(targetX == x && targetY == y) {
+					currentState = followState;
+					returningToPlayer = false;
+				}
+				
+			}else {
+				if(x < targetX) {
+					x += speed;
+				}else if(x > targetX){
+					x -= speed;
+				}else {
+					returningToPlayer = true;
+					pauseStartTime = System.currentTimeMillis();
+					currentState = pauseState;
+				}
+				
+			}
+				
+				
+		}else if(currentState == pauseState) {
+			if(System.currentTimeMillis() - pauseStartTime > 1000) {
+				System.out.println("pauseState time expired");
+				currentState = moveState;
+				targetX = knightX + 85;
+	
+				targetY = knightY + 45;
+			}
 		}
-
-		super.update();
 	}
-
+	
 	void draw(Graphics g) {
 		if (gotImage) {
 			g.drawImage(image, x, y, width, height, null);

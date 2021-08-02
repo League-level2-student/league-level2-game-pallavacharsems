@@ -34,7 +34,8 @@ public class Dragon extends GameObject {
 		
 	
 	void draw(Graphics g) {
-	     if (gotImage) {
+	
+		if (gotImage) {
 	    		g.drawImage(image, x, y, width, height, null);
 	    	} else {
 	    		g.setColor(Color.BLUE);

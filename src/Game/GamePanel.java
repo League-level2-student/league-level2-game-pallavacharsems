@@ -20,9 +20,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static boolean gotImage = false;
 	final int MENU = 0;
 	final int KEY = 1;
-	final int DUNGEON = 2;
-	final int GAME = 3;
-	final int END = 4;
+	final int GAME = 2;
+	final int END = 3;
 	int currentState = MENU;
 	Font titleFont;
 	Font tf;
@@ -55,8 +54,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			drawMenuState(g);
 		}else if (currentState == KEY) {
 			drawKeyState(g);
-		}else if (currentState == DUNGEON) {
-			drawDungeonState(g);
 		} else if (currentState == GAME) {
 			drawGameState(g);
 		} else if (currentState == END) {
@@ -178,8 +175,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			updateMenuState();
 		} else if (currentState == KEY) {
 			updateKeyState();
-		} else if (currentState == DUNGEON) {
-			updateDungeonState();
+		
 		} else if (currentState == GAME) {
 			updateGameState();
 		} else if (currentState == END) {
@@ -214,22 +210,24 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 						 +"They get into a horrible crash, and they all die. They were the only people on the boat. \n"
 						 +"When the police are taking the bodies, they take the King's body, then the Queen's and then a third person's body. Whose body is the third body?");
 				if(g.equalsIgnoreCase("knight")) {
-				JOptionPane.showMessageDialog(null, "Great Job. You can now move onto finding the key");
+				JOptionPane.showMessageDialog(null, "Great Job. You found the key! You can now move on to fighting the dragon");
 			} else {
 				JOptionPane.showMessageDialog(null, "Sorry you were wrong! You lost!");
 				currentState = END;
 			}
-
+			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			s.startSwing = true;
+			s.targetY = k.x + 85;
+			s.targetX = k.y + 45 + 300;
+			s.currentState = s.moveState;
 			
 			
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 
 			k.up = true;
-			System.out.println("gr3egre");
+			
 
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -247,7 +245,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			k.right = true;
 
 		}
-	}
+	
 	}
 	@Override
 	public void keyReleased(KeyEvent arg0) {
