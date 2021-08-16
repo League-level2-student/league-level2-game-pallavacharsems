@@ -2,6 +2,7 @@ package Game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -11,7 +12,9 @@ public class Knight extends GameObject {
 	boolean down;
 	boolean left;
 	boolean right;
-	public static BufferedImage image;
+	boolean isFacingRight;
+	public static BufferedImage imageR;
+	public static BufferedImage imageL;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
 	
@@ -29,13 +32,13 @@ public class Knight extends GameObject {
 
 	void draw(Graphics g) {
 		if (gotImage) {
-			g.drawImage(image, x, y, width, height, null);
+			if(isFacingRight) {
+			g.drawImage(imageR, x, y, width, height, null);
 		} else {
-			g.setColor(Color.BLUE);
-			g.fillRect(x, y, width, height);
+			g.drawImage(imageL, x, y, width, height, null);
 		}
 	}
-
+	}
 	void update() {
 		
 		super.update();
@@ -50,10 +53,12 @@ public class Knight extends GameObject {
 
 		if (left == true) {
 			x += -speed;
+			isFacingRight = false;
 
 		}
 		if (right == true) {
 			x += speed;
+			isFacingRight = true;
 		}
 		if (y <= 0) {
 			y = 0;
@@ -69,7 +74,8 @@ public class Knight extends GameObject {
 	void loadImage(String imageFile) {
 	    if (needImage) {
 	        try {
-	            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+	            imageR = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+	            imageL = horizontalFlip(imageR);
 		    gotImage = true;
 	        } catch (Exception e) {
 	            
@@ -77,6 +83,16 @@ public class Knight extends GameObject {
 	        needImage = false;
 	    }
 	}
+	public static BufferedImage horizontalFlip(BufferedImage img) {
+	    int w = img.getWidth();
+	    int h = img.getHeight();
+	    BufferedImage flippedImage = new BufferedImage(w, h, img.getType());
+	    Graphics2D g = flippedImage.createGraphics();
+	    g.drawImage(img, 0, 0, w, h, w, 0, 0, h, null);
+	    g.dispose();
+	    return flippedImage;
+	}
+
 	
 } 
 

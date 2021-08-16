@@ -46,7 +46,7 @@ public class ObjectManager implements ActionListener {
 
 	void checkCollision() {
 		
-			if (k.collisionBox.intersects(d.collisionBox)) {
+			if (s.collisionBox.intersects(d.collisionBox)) {
 				k.isActive = false;
 				d.isActive = false;
 				System.out.println("t");

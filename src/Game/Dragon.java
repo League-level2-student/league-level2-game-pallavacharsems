@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 public class Dragon extends GameObject {
 	Knight k;
+	int w = 110;
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
@@ -34,7 +35,15 @@ public class Dragon extends GameObject {
 		
 	
 	void draw(Graphics g) {
-	
+		g.setColor(Color.GRAY);
+		g.fillRect(x+50, y-50, 110, 50);
+		g.setColor(Color.BLUE);
+		g.fillRect(x+50, y-50, w, 50);
+		if(w>=0) {
+			w-=1;
+		}
+		
+		
 		if (gotImage) {
 	    		g.drawImage(image, x, y, width, height, null);
 	    	} else {

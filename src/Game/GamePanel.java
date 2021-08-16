@@ -210,7 +210,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 						 +"They get into a horrible crash, and they all die. They were the only people on the boat. \n"
 						 +"When the police are taking the bodies, they take the King's body, then the Queen's and then a third person's body. Whose body is the third body?");
 				if(g.equalsIgnoreCase("knight")) {
-				JOptionPane.showMessageDialog(null, "Great Job. You found the key! You can now move on to fighting the dragon");
+				JOptionPane.showMessageDialog(null, "Great Job. You found the key! You can now move on to fighting the dragon by pressing ENTER!");
 			} else {
 				JOptionPane.showMessageDialog(null, "Sorry you were wrong! You lost!");
 				currentState = END;

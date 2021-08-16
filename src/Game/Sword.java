@@ -65,9 +65,9 @@ public class Sword extends GameObject implements KeyListener {
 				}
 				
 			}else {
-				if(x < targetX) {
+				if(x < (targetX-speed)) {
 					x += speed;
-				}else if(x > targetX){
+				}else if(x > (targetX+speed)){
 					x -= speed;
 				}else {
 					returningToPlayer = true;
