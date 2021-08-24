@@ -21,6 +21,7 @@ public class Dragon extends GameObject {
 		}
 }
 	void update() {
+		super.update();
 		if (x>k.x) {
 			x = x-2;
 		} else if (x<k.x) {
@@ -35,13 +36,13 @@ public class Dragon extends GameObject {
 		
 	
 	void draw(Graphics g) {
+		
 		g.setColor(Color.GRAY);
 		g.fillRect(x+50, y-50, 110, 50);
 		g.setColor(Color.BLUE);
 		g.fillRect(x+50, y-50, w, 50);
-		if(w>=0) {
-			w-=1;
-		}
+
+		
 		
 		
 		if (gotImage) {

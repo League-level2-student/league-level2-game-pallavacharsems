@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer alienspawn;
 	Knight k = new Knight(105, 250, 150, 125);
 	Sword s = new Sword(k.x, k.y, 20, 40);
-	Dragon d = new Dragon(250, 250, 250 ,250, k);
+	Dragon d = new Dragon(550, 250, 250 ,250, k);
 	
 	
 	
@@ -89,6 +89,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		k.update();
 		s.update();
 		d.update();
+		om.update();
 		s.knightX = k.x;
 		s.knightY = k.y;
 		if (k.isActive == false) {
@@ -219,7 +220,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			s.targetY = k.x + 85;
-			s.targetX = k.y + 45 + 300;
+			s.targetX = k.y + 345;
 			s.currentState = s.moveState;
 			
 			

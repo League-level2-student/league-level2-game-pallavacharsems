@@ -31,6 +31,8 @@ public class Knight extends GameObject {
 	}
 
 	void draw(Graphics g) {
+		
+		
 		if (gotImage) {
 			if(isFacingRight) {
 			g.drawImage(imageR, x, y, width, height, null);
@@ -41,7 +43,7 @@ public class Knight extends GameObject {
 	}
 	void update() {
 		
-		super.update();
+		collisionBox.setBounds(x+20, y+5, width-50, height-20);
 		
 		if (up == true) {
 			y += -speed;

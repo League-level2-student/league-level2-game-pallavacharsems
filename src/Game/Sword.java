@@ -41,6 +41,7 @@ public class Sword extends GameObject implements KeyListener {
 
 
 	public void update() {
+		super.update();
 		if(currentState == followState) {
 			x = knightX + 85;
 			y = knightY + 45;
@@ -65,6 +66,7 @@ public class Sword extends GameObject implements KeyListener {
 				}
 				
 			}else {
+				
 				if(x < (targetX-speed)) {
 					x += speed;
 				}else if(x > (targetX+speed)){

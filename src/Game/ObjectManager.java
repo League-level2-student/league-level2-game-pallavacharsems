@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 public class ObjectManager implements ActionListener {
 	Knight k;
 	Sword s;
@@ -26,41 +28,40 @@ public class ObjectManager implements ActionListener {
 	public int getScore() {
 		return score;
 
+	} void update() {
+		checkCollision();
 	}
-
-
-	
 
 	void draw(Graphics g) {
 		k.draw(g);
-		if(gp.currentState != gp.KEY) {
-		s.draw(g);
+		if (gp.currentState != gp.KEY) {
+			s.draw(g);
 		}
-		if(gp.currentState == gp.GAME) {
+		if (gp.currentState == gp.GAME) {
 			d.draw(g);
 		}
-		
-			
-		
+
 	}
 
 	void checkCollision() {
-		
-			if (s.collisionBox.intersects(d.collisionBox)) {
-				k.isActive = false;
-				d.isActive = false;
-				System.out.println("t");
-			}
-			
-				}
-			
 
-		
-	
+		if (s.collisionBox.intersects(d.collisionBox)) {
+			d.w -= 1;
+			System.out.println("t");
+			if (d.w <= 0) {
+				JOptionPane.showMessageDialog(null, "You Win!");
+				gp.currentState = gp.END;
+
+			}
+		} if(d.collisionBox.intersects(k.collisionBox)) {
+		JOptionPane.showMessageDialog(null, "You Lose!");
+		gp.currentState = gp.END;
+		}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
