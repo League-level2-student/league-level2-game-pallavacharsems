@@ -47,7 +47,6 @@ public class ObjectManager implements ActionListener {
 
 		if (s.collisionBox.intersects(d.collisionBox)) {
 			d.w -= 1;
-			System.out.println("t");
 			if (d.w <= 0) {
 				JOptionPane.showMessageDialog(null, "You Win!");
 				gp.currentState = gp.END;

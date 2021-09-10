@@ -43,11 +43,19 @@ public class Sword extends GameObject implements KeyListener {
 	public void update() {
 		super.update();
 		if(currentState == followState) {
-			x = knightX + 85;
+			if(Knight.isFacingRight) {
+				x = knightX + 85;
+				} else {
+				 x = knightX-25;
+				}
 			y = knightY + 45;
 		}else if(currentState == moveState) {
 			if(returningToPlayer) {
-				targetX = knightX + 85;
+				if(Knight.isFacingRight) {
+					targetX = knightX + 85;
+					} else {
+						targetX = knightX-25;
+					}
 				targetY = knightY + 45;
 				if(x < targetX) {
 					x += speed;
@@ -59,7 +67,12 @@ public class Sword extends GameObject implements KeyListener {
 				}else if(y > targetY){
 					y -= speed;
 				}
-				
+				if(Math.abs(x-targetX)< speed) {
+					x = targetX;
+				}
+				if(Math.abs(y-targetY)< speed) {
+					y = targetY;
+				}
 				if(targetX == x && targetY == y) {
 					currentState = followState;
 					returningToPlayer = false;
@@ -82,16 +95,20 @@ public class Sword extends GameObject implements KeyListener {
 				
 		}else if(currentState == pauseState) {
 			if(System.currentTimeMillis() - pauseStartTime > 1000) {
-				System.out.println("pauseState time expired");
 				currentState = moveState;
+				if(Knight.isFacingRight) {
 				targetX = knightX + 85;
-	
+				} else {
+					targetX = knightX-25;
+				}
 				targetY = knightY + 45;
 			}
 		}
 	}
 	
 	void draw(Graphics g) {
+	
+		
 		if (gotImage) {
 			g.drawImage(image, x, y, width, height, null);
 		} else {

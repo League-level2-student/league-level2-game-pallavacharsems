@@ -12,7 +12,7 @@ public class Knight extends GameObject {
 	boolean down;
 	boolean left;
 	boolean right;
-	boolean isFacingRight;
+	public static boolean isFacingRight;
 	public static BufferedImage imageR;
 	public static BufferedImage imageL;
 	public static boolean needImage = true;
@@ -23,7 +23,7 @@ public class Knight extends GameObject {
 		super(x, y, width, height);
 		speed = 10;
 		if (needImage) {
-		    loadImage ("walk animation/right13.png");
+		    loadImage ("walk animation/right.png");
 		    
 		}
 
@@ -42,8 +42,8 @@ public class Knight extends GameObject {
 	}
 	}
 	void update() {
-		
-		collisionBox.setBounds(x+20, y+5, width-50, height-20);
+	super.update();	
+	
 		
 		if (up == true) {
 			y += -speed;
@@ -56,6 +56,7 @@ public class Knight extends GameObject {
 		if (left == true) {
 			x += -speed;
 			isFacingRight = false;
+			
 
 		}
 		if (right == true) {
@@ -64,10 +65,10 @@ public class Knight extends GameObject {
 		}
 		if (y <= 0) {
 			y = 0;
-		} else if (y >= SavePrincess.HEIGHT-150) {
-			y = SavePrincess.HEIGHT-150;
-		} if (x >= SavePrincess.WIDTH-15) {
-			x = SavePrincess.WIDTH-15;
+		} else if (y >= SavePrincess.HEIGHT-height) {
+			y = SavePrincess.HEIGHT-height;
+		} if (x >= SavePrincess.WIDTH-width) {
+			x = SavePrincess.WIDTH-width;
 		} else if (x <= 0) {
 			x = 0;
 		}

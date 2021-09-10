@@ -21,7 +21,7 @@ public class Dragon extends GameObject {
 		}
 }
 	void update() {
-		super.update();
+		collisionBox.setBounds(x+45, y+20, width-90, height-40);
 		if (x>k.x) {
 			x = x-2;
 		} else if (x<k.x) {
@@ -41,7 +41,6 @@ public class Dragon extends GameObject {
 		g.fillRect(x+50, y-50, 110, 50);
 		g.setColor(Color.BLUE);
 		g.fillRect(x+50, y-50, w, 50);
-
 		
 		
 		

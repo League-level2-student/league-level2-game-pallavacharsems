@@ -27,7 +27,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font tf;
 	Timer frameDraw;
 	Timer alienspawn;
-	Knight k = new Knight(105, 250, 150, 125);
+	Knight k = new Knight(105, 250, 75, 100);
 	Sword s = new Sword(k.x, k.y, 20, 40);
 	Dragon d = new Dragon(550, 250, 250 ,250, k);
 	
@@ -197,9 +197,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if (currentState == END) {
 				currentState = MENU;
 				alienspawn.stop();
-				k = new Knight(105, 250, 150, 125);
+				k = new Knight(105, 250, 75, 100);
 				s = new Sword(225, 250, 25, 50);
+				d = new Dragon(550, 250, 250 ,250, k);
 				om = new ObjectManager(k, s, d, this);
+				
 			} else {
 				currentState++;
 
@@ -211,7 +213,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 						 +"They get into a horrible crash, and they all die. They were the only people on the boat. \n"
 						 +"When the police are taking the bodies, they take the King's body, then the Queen's and then a third person's body. Whose body is the third body?");
 				if(g.equalsIgnoreCase("knight")) {
-				JOptionPane.showMessageDialog(null, "Great Job. You found the key! You can now move on to fighting the dragon by pressing ENTER!");
+				JOptionPane.showMessageDialog(null, "Great Job. You found the key! You can now move on to fighting the dragon by clicking OK and then pressing ENTER!");
 			} else {
 				JOptionPane.showMessageDialog(null, "Sorry you were wrong! You lost!");
 				currentState = END;
