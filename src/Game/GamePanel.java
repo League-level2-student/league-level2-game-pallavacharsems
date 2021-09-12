@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	ObjectManager om = new ObjectManager(k, s, d, this);
 
 	GamePanel() {
-		JOptionPane.showMessageDialog(null, "The princess is captured and you must save her. Get the key to the dungeon, get passed the dungeon, and then fight the dragon to save the princess!");
+		JOptionPane.showMessageDialog(null, "The princess is captured and you must save her. Get passed the dungeon, and then fight the dragon to save the princess! SPACE BAR to throw the knife and the ARROW KEYS to move!");
 		titleFont = new Font("Arial", Font.PLAIN, 48);
 		tf = new Font("Arial", Font.PLAIN, 24);
 		frameDraw = new Timer(1000 / 60, this);
