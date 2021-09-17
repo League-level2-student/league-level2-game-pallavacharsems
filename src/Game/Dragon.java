@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 public class Dragon extends GameObject {
 	Knight k;
 	int w = 110;
+int s = 2;
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
@@ -23,14 +24,14 @@ public class Dragon extends GameObject {
 	void update() {
 		collisionBox.setBounds(x+45, y+20, width-90, height-40);
 		if (x>k.x) {
-			x = x-2;
+			x = x-s;
 		} else if (x<k.x) {
-			x = x+2;
+			x = x+s;
 		
 		}if (y>k.y) {
-			y = y-2;
+			y = y-s;
 		}else if (y<k.y) {
-			y = y+2;
+			y = y+s;
 		}
 		}
 		

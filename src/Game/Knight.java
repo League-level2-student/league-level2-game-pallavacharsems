@@ -65,10 +65,10 @@ public class Knight extends GameObject {
 		}
 		if (y <= 0) {
 			y = 0;
-		} else if (y >= SavePrincess.HEIGHT-height) {
-			y = SavePrincess.HEIGHT-height;
-		} if (x >= SavePrincess.WIDTH-width) {
-			x = SavePrincess.WIDTH-width;
+		} else if (y >= DefeatDragon.HEIGHT-height) {
+			y = DefeatDragon.HEIGHT-height;
+		} if (x >= DefeatDragon.WIDTH-width) {
+			x = DefeatDragon.WIDTH-width;
 		} else if (x <= 0) {
 			x = 0;
 		}

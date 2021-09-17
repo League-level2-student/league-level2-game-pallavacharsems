@@ -47,6 +47,13 @@ public class ObjectManager implements ActionListener {
 
 		if (s.collisionBox.intersects(d.collisionBox)) {
 			d.w -= 1;
+			if (d.w<55) {
+				d.s = 4;
+			if(d.w<30) {
+				d.s = 7;
+			}
+			}
+	
 			if (d.w <= 0) {
 				JOptionPane.showMessageDialog(null, "You Win! You have saved the princess");
 				gp.currentState = gp.END;
