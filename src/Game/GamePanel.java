@@ -211,12 +211,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			} else {
 				currentState++;
 				if (currentState == GAME) {
-					JOptionPane.showMessageDialog(null, "Use the ARROW KEYS to move and the SPACE BAR to shoot!");
+					JOptionPane.showMessageDialog(null, "ARROW KEYS to move, SPACE BAR to shoot, and Q to dash!");
 				}
 			}
 			if (currentState == KEY) {
 				startGame();
-				JOptionPane.showMessageDialog(null, "To fight the Dragon you must solve the riddle!");
+				JOptionPane.showMessageDialog(null, "To get 3 speed boosts you must solve the riddle!");
 				String g = JOptionPane.showInputDialog("I have a tail but Im not a mouse\r\n" + 
 						"I have scales but Im not a fish\r\n" + 
 						"I have wings but Im not an airplane\r\n" + 
@@ -288,6 +288,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				k.speed+=15;
 				active = true;
 				post = System.currentTimeMillis();
+			
 				
 				times-=1;
 	
