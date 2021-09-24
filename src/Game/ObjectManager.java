@@ -56,7 +56,7 @@ public class ObjectManager implements ActionListener {
 			}
 	
 			if (d.w <= 0) {
-				JOptionPane.showMessageDialog(null, "You Win! You have Defeated the Dragon");
+				gp.hasWon = true; 
 				gp.currentState = gp.END;
 
 			}

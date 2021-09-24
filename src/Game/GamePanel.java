@@ -18,6 +18,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;
+	public static boolean hasWon = false;
 	final int MENU = 0;
 	final int KEY = 1;
 	final int GAME = 2;
@@ -173,6 +174,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawEndState(Graphics g) {
+		if(hasWon == false) {
 		g.setColor(Color.RED);
 		g.fillRect(0, 0, DefeatDragon.WIDTH, DefeatDragon.HEIGHT);
 		g.setFont(titleFont);
@@ -181,6 +183,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(titleFont);
 		g.setColor(Color.YELLOW);
 		g.drawString("Press ENTER to restart", 310, 250);
+	} else {
+		g.setColor(Color.BLUE);
+		g.fillRect(0, 0, DefeatDragon.WIDTH, DefeatDragon.HEIGHT);
+		g.setFont(titleFont);
+		g.setColor(Color.MAGENTA);
+		g.drawString("YOU WIN", 375, 50);
+		g.setFont(titleFont);
+		g.setColor(Color.MAGENTA);
+		g.drawString("Press ENTER to play again", 310, 250);
+	}
 	}
 
 	@Override
