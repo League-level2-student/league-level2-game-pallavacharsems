@@ -98,8 +98,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (k.isActive == false) {
 			currentState = END;
 		}
-		if(active == true) {
-			if (System.currentTimeMillis()> post+3000) {
+		if (active == true) {
+			if (System.currentTimeMillis() > post + 3000) {
 				active = false;
 				k.speed = 10;
 			}
@@ -134,6 +134,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.fillRect(0, 0, DefeatDragon.WIDTH, DefeatDragon.HEIGHT);
 		}
 		om.draw(g);
+		g.setFont(tf);g.setColor(Color.BLACK);
+		g.drawString("ARROW KEYS to move", 300, 100);
+		g.drawString("SPACE BAR to throw the sword ", 300, 150);
+		g.drawString("Q to dash if you've earned it", 300, 200);
+		g.drawString("Press enter to fight the dragon once your ready ", 300, 250);
 
 	}
 
@@ -141,13 +146,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (gotImage) {
 			g.drawImage(image, 0, 0, DefeatDragon.WIDTH, DefeatDragon.HEIGHT, null);
 			g.setColor(Color.RED);
-			g.setFont(tf);
+			
+			
 
 		} else {
 			g.setColor(Color.WHITE);
 			g.fillRect(0, 0, DefeatDragon.WIDTH, DefeatDragon.HEIGHT);
 		}
 		om.draw(g);
+	
 
 	}
 
@@ -211,26 +218,31 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			} else {
 				currentState++;
 				if (currentState == GAME) {
-					JOptionPane.showMessageDialog(null, "ARROW KEYS to move, SPACE BAR to shoot, and Q to dash!");
+					k.x = 105;
+					k.y = 250;
+					s.x  = 225;
+					s.y = 250;
+				
 				}
 			}
 			if (currentState == KEY) {
 				startGame();
 				JOptionPane.showMessageDialog(null, "To get 3 speed boosts you must solve the riddle!");
-				String g = JOptionPane.showInputDialog("I have a tail but Im not a mouse\r\n" + 
-						"I have scales but Im not a fish\r\n" + 
-						"I have wings but Im not an airplane\r\n" + 
-						"I'm a mythical creature but Im not a unicorn\r\n" + 
-						"I have fire coming out of my mouth but Im not a flame thrower\r\n" +
-						"What am i?");
+				String g = JOptionPane.showInputDialog("I have a tail but Im not a mouse\r\n"
+						+ "I have scales but Im not a fish\r\n" + "I have wings but Im not an airplane\r\n"
+						+ "I'm a mythical creature but Im not a unicorn\r\n"
+						+ "I have fire coming out of my mouth but Im not a flame thrower\r\n" + "What am i?");
 				g = g.toLowerCase();
 				if (g.contains("dragon")) {
 					times = 3;
-					JOptionPane.showMessageDialog(null, "Great Job. You have earned 3 speed boosts! You can now move on to fighting the dragon by clicking OK and then pressing ENTER!");
+					JOptionPane.showMessageDialog(null,
+							"Great Job. You have earned 3 speed boosts! You can now move on to testing your abilities!");
 				} else {
-					JOptionPane.showMessageDialog(null, "Sorry you were wrong! You don't get the speed boosts!");
-					
+					JOptionPane.showMessageDialog(null,
+							"Sorry you were wrong! You don't get the speed boosts! You can test your abilities!");
+
 				}
+
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -240,10 +252,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		}
 
-	
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			k.up = true;
-			
+
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 
@@ -282,18 +293,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			k.right = false;
 
 		}
-		if (times>0) {
-			
-			if(arg0.getKeyCode() == KeyEvent.VK_Q) {
-				k.speed+=15;
+		if (times > 0) {
+
+			if (arg0.getKeyCode() == KeyEvent.VK_Q) {
+
+				k.speed += 15;
 				active = true;
 				post = System.currentTimeMillis();
-			
-				
-				times-=1;
-	
+
+				if (currentState == GAME) {
+					times -= 1;
+
+				}
+
 			}
-			}
+		}
 
 	}
 

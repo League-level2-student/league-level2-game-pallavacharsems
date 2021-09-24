@@ -34,11 +34,12 @@ public class ObjectManager implements ActionListener {
 
 	void draw(Graphics g) {
 		k.draw(g);
-		if (gp.currentState != gp.KEY) {
+		if (gp.currentState == gp.KEY) {
 			s.draw(g);
 		}
 		if (gp.currentState == gp.GAME) {
 			d.draw(g);
+			s.draw(g);
 		}
 
 	}
