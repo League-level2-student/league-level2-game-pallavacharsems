@@ -175,14 +175,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void drawEndState(Graphics g) {
 		if(hasWon == false) {
-		g.setColor(Color.RED);
-		g.fillRect(0, 0, DefeatDragon.WIDTH, DefeatDragon.HEIGHT);
-		g.setFont(titleFont);
-		g.setColor(Color.YELLOW);
-		g.drawString("Game Over", 375, 50);
-		g.setFont(titleFont);
-		g.setColor(Color.YELLOW);
-		g.drawString("Press ENTER to restart", 310, 250);
+			g.setColor(Color.RED);
+			g.fillRect(0, 0, DefeatDragon.WIDTH, DefeatDragon.HEIGHT);
+			g.setFont(titleFont);
+			g.setColor(Color.YELLOW);
+			g.drawString("Game Over", 375, 50);
+			g.setFont(titleFont);
+			g.setColor(Color.YELLOW);
+			g.drawString("Press ENTER to restart", 310, 250);
+
 	} else {
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, DefeatDragon.WIDTH, DefeatDragon.HEIGHT);
@@ -191,7 +192,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("YOU WIN", 375, 50);
 		g.setFont(titleFont);
 		g.setColor(Color.MAGENTA);
-		g.drawString("Press ENTER to play again", 310, 250);
+		g.drawString("Press ENTER to play again", 210, 250);
+		
 	}
 	}
 
