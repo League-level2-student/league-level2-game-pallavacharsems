@@ -223,6 +223,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 			if (currentState == END) {
 				currentState = MENU;
+				hasWon = false;
 				alienspawn.stop();
 				k = new Knight(105, 250, 75, 100);
 				s = new Sword(225, 250, 25, 50);
